@@ -1,0 +1,45 @@
+package com.mlc.server;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+
+/**
+ * Created by ahmad on 7/1/16.
+ */
+public class Server extends Thread {
+    private ArrayList<ClientInstance> clients;
+    private ServerSocket serverSocket;
+
+    private final int port = 6066;
+
+    private boolean isRunning;
+
+    public Server(){
+        clients = new ArrayList<>();
+        try {
+            serverSocket = new ServerSocket(port);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run() {
+        while (isRunning){
+            try {
+                Socket socket = serverSocket.accept();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void sendToAll(Message message){
+        for (ClientInstance ci :
+                clients) {
+            ci.sendMessage(message);
+        }
+    }
+}
