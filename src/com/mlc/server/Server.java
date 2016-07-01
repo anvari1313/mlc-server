@@ -30,6 +30,7 @@ public class Server extends Thread {
         while (isRunning){
             try {
                 Socket socket = serverSocket.accept();
+                clients.add(new ClientInstance(socket,this));
             } catch (IOException e) {
                 e.printStackTrace();
             }
