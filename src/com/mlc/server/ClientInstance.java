@@ -48,6 +48,7 @@ public class ClientInstance extends Thread {
     public void sendMessage(Message message){
         try {
             output.writeObject(message);
+            output.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
