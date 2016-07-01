@@ -18,6 +18,7 @@ public class Server extends Thread {
 
     public Server(){
         clients = new ArrayList<>();
+        isRunning = true;
         try {
             serverSocket = new ServerSocket(port);
         } catch (IOException e) {
@@ -30,6 +31,7 @@ public class Server extends Thread {
         while (isRunning){
             try {
                 Socket socket = serverSocket.accept();
+                System.out.println("new client accepted");
                 clients.add(new ClientInstance(socket,this));
             } catch (IOException e) {
                 e.printStackTrace();
