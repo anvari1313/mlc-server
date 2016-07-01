@@ -26,12 +26,15 @@ public class ClientInstance extends Thread {
             e.printStackTrace();
         }
         isClientConnected = true;
+        start();
     }
     @Override
     public void run() {
         while (isClientConnected){
             try {
+                System.out.println("Listening for the client....");
                 Message m = ((Message) input.readObject());
+                System.out.println("Client sends new message");
                 server.sendToAll(m);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -43,6 +46,10 @@ public class ClientInstance extends Thread {
     }
 
     public void sendMessage(Message message){
-
+        try {
+            output.writeObject(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
