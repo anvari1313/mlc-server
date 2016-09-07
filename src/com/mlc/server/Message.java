@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Created by ahmad on 7/1/16.
  */
 public class Message implements Serializable {
+
     private String text;
     private String sayerName;
 
