@@ -28,6 +28,7 @@ public class Server extends Thread {
 
     @Override
     public void run() {
+        System.out.println("Server is started");
         while (isRunning){
             try {
                 Socket socket = serverSocket.accept();
